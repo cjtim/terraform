@@ -22,4 +22,7 @@ resource "google_compute_instance" "vm_instance" {
       nat_ip = var.IP_ADDR
     }
   }
+  metadata = {
+    sshKeys = "${var.SSH_USER}:${var.SSH_PUB_KEY}"
+  }
 }

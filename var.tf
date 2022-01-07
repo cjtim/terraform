@@ -8,6 +8,16 @@ variable "IP_ADDR" {
   description = "instance ip addr"
 }
 
+variable "SSH_USER" {
+  type        = string
+  description = "ssh user"
+}
+
+variable "SSH_PUB_KEY" {
+  type        = string
+  description = "ssh pub key"
+}
+
 locals {
   region = "us-west1"
   zone   = "us-west1-b"
