@@ -15,6 +15,6 @@ terraform init -input=false \
 
 terraform plan -input=false
 
-terraform apply -input=false
+terraform apply -input=false -auto-approve
 
 rm -rf $TMP_FILE
