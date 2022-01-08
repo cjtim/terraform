@@ -7,7 +7,7 @@ on:
   pull_request:
 
 env:
-  GOOGLE_CREDENTIALS: svc.json
+  # GOOGLE_CREDENTIALS: svc.json
   SVC_BASE64: ${{ secrets.SVC_BASE64 }}
   TF_VAR_PROJECT_ID: ${{ secrets.TF_VAR_PROJECT_ID }}
   TF_VAR_IP_ADDR: ${{ secrets.TF_VAR_IP_ADDR }}
@@ -20,7 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup GCP Credential
-        run: echo "$SVC_BASE64" | base64 -d > svc.json
+        run: |
+          echo "$SVC_BASE64" | base64 -d > svc.json
+          echo "GOOGLE_CREDENTIALS=$(pwd)/svc.json" >> $GITHUB_ENV
+          
 
       - name: Checkout
         uses: actions/checkout@v2
