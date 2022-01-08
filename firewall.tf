@@ -8,6 +8,7 @@ resource "google_compute_firewall" "ssh" {
   network = google_compute_network.vpc_network.name
 
   log_config {
+    metadata = "INCLUDE_ALL_METADATA"
   }
 
   allow {
@@ -21,6 +22,7 @@ resource "google_compute_firewall" "https" {
   network = google_compute_network.vpc_network.name
 
   log_config {
+    metadata = 
   }
 
   allow {
@@ -34,6 +36,7 @@ resource "google_compute_firewall" "postgres" {
   network = google_compute_network.vpc_network.name
 
   log_config {
+    metadata = 
   }
 
   allow {
