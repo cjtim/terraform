@@ -31,7 +31,10 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: |
+          terraform init -input=false \
+          -backend-config="bucket=terraform-${TF_VAR_PROJECT_ID}" \
+          -backend-config="prefix=prod"
 
       - name: Terraform Validate
         id: validate
