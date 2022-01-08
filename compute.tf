@@ -19,11 +19,17 @@ resource "google_compute_instance" "vm_instance" {
     # A default network is created for all GCP projects
     network = google_compute_network.vpc_network.self_link
     access_config {
-      nat_ip = var.IP_ADDR
+      nat_ip = var.IP_ADDR ? var.IP_ADDR : ""
     }
   }
 
-  metadata = {
-    sshKeys = "${var.SSH_USER}:${var.SSH_PUB_KEY}"
+  dynamic "metadata" {
+    for_each = var.add_ssh_key == true ? [{
+      sshKeys = "${var.SSH_USER}:${var.SSH_PUB_KEY}"
+    }] : []
+
+    content {
+      sshKeys = metadata.value.sshKeys
+    }
   }
 }

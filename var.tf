@@ -8,6 +8,12 @@ variable "IP_ADDR" {
   description = "instance ip addr"
 }
 
+variable "add_ssh_key" {
+  type        = bool
+  description = "add ssh key"
+  default     = true
+}
+
 variable "SSH_USER" {
   type        = string
   description = "ssh user"
