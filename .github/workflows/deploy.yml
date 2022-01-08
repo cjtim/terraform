@@ -19,14 +19,14 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Setup GCP Credential
         run: |
           echo "$SVC_BASE64" | base64 -d > svc.json
           tree .
           echo "GOOGLE_CREDENTIALS=$(pwd)/svc.json" >> $GITHUB_ENV
-
-      - name: Checkout
-        uses: actions/checkout@v2
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
