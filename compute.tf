@@ -23,13 +23,7 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
 
-  dynamic "metadata" {
-    for_each = var.add_ssh_key == true ? [{
-      sshKeys = "${var.SSH_USER}:${var.SSH_PUB_KEY}"
-    }] : []
-
-    content {
-      sshKeys = metadata.value.sshKeys
-    }
+  metadata = {
+    sshKeys = (var.SSH_USER && var.SSH_PUB_KEY) ? "${var.SSH_USER}:${var.SSH_PUB_KEY}" : ""
   }
 }
