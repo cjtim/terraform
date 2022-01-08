@@ -1,7 +1,7 @@
 resource "google_compute_disk" "default" {
   name  = "disk-free-e2-micro"
-  zone  = local.zone
-  image = local.image
+  zone  = var.zone
+  image = var.image
   type  = "pd-standard"
   size  = "30"
 }
