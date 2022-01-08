@@ -6,6 +6,14 @@ resource "google_compute_disk" "default" {
   size  = "30"
 }
 
+resource "google_compute_disk" "test" {
+  name  = "test-disk"
+  zone  = local.zone
+  image = local.image
+  type  = "pd-standard"
+  size  = "30"
+}
+
 resource "google_compute_instance" "vm_instance" {
   name         = "free-e2-micro"
   machine_type = "e2-micro"
@@ -22,6 +30,11 @@ resource "google_compute_instance" "vm_instance" {
       nat_ip = var.IP_ADDR
     }
   }
+
+  attached_disk {
+    device_name = google_compute_disk.test.self_link
+  }
+
   metadata = {
     sshKeys = "${var.SSH_USER}:${var.SSH_PUB_KEY}"
   }
