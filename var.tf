@@ -6,6 +6,7 @@ variable "PROJECT_ID" {
 variable "IP_ADDR" {
   type        = string
   description = "instance ip addr"
+  default     = null
 }
 
 variable "add_ssh_key" {
@@ -17,11 +18,13 @@ variable "add_ssh_key" {
 variable "SSH_USER" {
   type        = string
   description = "ssh user"
+  default     = null
 }
 
 variable "SSH_PUB_KEY" {
   type        = string
   description = "ssh pub key"
+  default     = null
 }
 
 variable "firewall_enable_logging" {
