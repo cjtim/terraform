@@ -19,7 +19,7 @@ variable "SSH_PUB_KEY" {
 }
 
 variable "firewall_enable_logging" {
-  type        = string
+  type        = bool
   description = "firewall_enable_logging"
   default     = true
 }
