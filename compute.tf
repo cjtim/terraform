@@ -32,7 +32,7 @@ resource "google_compute_instance" "vm_instance" {
   }
 
   attached_disk {
-    device_name = google_compute_disk.test.self_link
+    source = google_compute_disk.test.self_link
   }
 
   metadata = {
