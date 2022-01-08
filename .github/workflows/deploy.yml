@@ -1,4 +1,4 @@
-name: Deploy
+name: Terraform
 
 on:
   push:
@@ -15,6 +15,20 @@ env:
   TF_VAR_SSH_PUB_KEY: ${{ secrets.TF_VAR_SSH_PUB_KEY }}
 
 jobs:
+  format:
+    name: "Format"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
@@ -30,11 +44,6 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
-
-      - name: Terraform fmt
-        id: fmt
-        run: terraform fmt -check
-        continue-on-error: true
 
       - name: Terraform Init
         id: init
@@ -64,8 +73,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
-            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            const output = `#### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
             #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
 
