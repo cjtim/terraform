@@ -12,6 +12,7 @@ resource "google_compute_disk" "test" {
   image = local.image
   type  = "pd-standard"
   size  = "30"
+  project = var.PROJECT_ID
 }
 
 resource "google_compute_instance" "vm_instance" {
