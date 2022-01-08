@@ -18,6 +18,12 @@ variable "SSH_PUB_KEY" {
   description = "ssh pub key"
 }
 
+variable "firewall_enable_logging" {
+  type        = string
+  description = "firewall_enable_logging"
+  default = true
+}
+
 locals {
   region = "us-west1"
   zone   = "us-west1-b"
