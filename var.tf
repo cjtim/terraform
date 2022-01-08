@@ -21,7 +21,7 @@ variable "SSH_PUB_KEY" {
 variable "firewall_enable_logging" {
   type        = string
   description = "firewall_enable_logging"
-  default = true
+  default     = true
 }
 
 locals {
