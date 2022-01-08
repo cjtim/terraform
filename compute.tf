@@ -6,15 +6,6 @@ resource "google_compute_disk" "default" {
   size  = "30"
 }
 
-resource "google_compute_disk" "test" {
-  name  = "test-disk"
-  zone  = local.zone
-  image = local.image
-  type  = "pd-standard"
-  size  = "30"
-  project = var.PROJECT_ID
-}
-
 resource "google_compute_instance" "vm_instance" {
   name         = "free-e2-micro"
   machine_type = "e2-micro"
@@ -30,10 +21,6 @@ resource "google_compute_instance" "vm_instance" {
     access_config {
       nat_ip = var.IP_ADDR
     }
-  }
-
-  attached_disk {
-    source = google_compute_disk.test.self_link
   }
 
   metadata = {
