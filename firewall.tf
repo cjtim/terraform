@@ -4,8 +4,8 @@ resource "google_compute_network" "vpc_network" {
 }
 
 resource "google_compute_firewall" "ssh" {
-  name    = "ssh"
-  network = google_compute_network.vpc_network.name
+  name           = "ssh"
+  network        = google_compute_network.vpc_network.name
   enable_logging = true
 
   dynamic "log_config" {
@@ -25,8 +25,8 @@ resource "google_compute_firewall" "ssh" {
 }
 
 resource "google_compute_firewall" "https" {
-  name    = "https"
-  network = google_compute_network.vpc_network.name
+  name           = "https"
+  network        = google_compute_network.vpc_network.name
   enable_logging = true
 
   dynamic "log_config" {
@@ -46,8 +46,8 @@ resource "google_compute_firewall" "https" {
 }
 
 resource "google_compute_firewall" "postgres" {
-  name    = "postgres"
-  network = google_compute_network.vpc_network.name
+  name           = "postgres"
+  network        = google_compute_network.vpc_network.name
   enable_logging = true
 
   dynamic "log_config" {

@@ -1,7 +1,7 @@
 resource "google_compute_disk" "default" {
   name  = "disk-free-e2-micro"
-  zone  = local.zone
-  image = local.image
+  zone  = var.zone
+  image = var.image
   type  = "pd-standard"
   size  = "30"
 }
@@ -19,11 +19,11 @@ resource "google_compute_instance" "vm_instance" {
     # A default network is created for all GCP projects
     network = google_compute_network.vpc_network.self_link
     access_config {
-      nat_ip = var.IP_ADDR
+      nat_ip = var.IP_ADDR != "" ? var.IP_ADDR : null
     }
   }
 
   metadata = {
-    sshKeys = "${var.SSH_USER}:${var.SSH_PUB_KEY}"
+    sshKeys = (var.SSH_USER != "" && var.SSH_PUB_KEY != "") ? "${var.SSH_USER}:${var.SSH_PUB_KEY}" : null
   }
 }

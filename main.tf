@@ -11,6 +11,6 @@ terraform {
 
 provider "google" {
   # credentials = file("svc.json") use export GOOGLE_CREDENTIALS
-  region = local.region
-  zone   = local.zone
+  region = var.region
+  zone   = var.zone
 }
