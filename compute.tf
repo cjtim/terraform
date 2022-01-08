@@ -14,7 +14,7 @@ resource "google_compute_instance" "vm_instance" {
     source      = google_compute_disk.default.name
     auto_delete = false
   }
-
+      
   network_interface {
     # A default network is created for all GCP projects
     network = google_compute_network.vpc_network.self_link
