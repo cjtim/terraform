@@ -1,5 +1,6 @@
 terraform {
-  backend "gcs" {}
+  backend "http" {
+  }
   required_providers {
     google = {
       source  = "hashicorp/google"
