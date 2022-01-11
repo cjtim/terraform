@@ -10,7 +10,7 @@ resource "google_compute_disk" "default" {
 resource "google_compute_disk" "ssd" {
   name    = "ssd-disk-e2-micro"
   zone    = var.zone
-  image   = "ubuntu-minimal-2004-lts"
+  image   = "ubuntu-minimal-2004-focal-v20220110b"
   type    = "pd-ssd"
   size    = "10"
   project = var.PROJECT_ID
