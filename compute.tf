@@ -23,6 +23,10 @@ resource "google_compute_instance" "vm_instance" {
     auto_delete = false
   }
 
+  attached_disk {
+    source = google_compute_disk.default.name
+  }
+
   network_interface {
     # A default network is created for all GCP projects
     network = google_compute_network.vpc_network.self_link
