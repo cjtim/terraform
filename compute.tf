@@ -1,22 +1,25 @@
 resource "google_compute_disk" "default" {
-  name  = "disk-free-e2-micro"
-  zone  = var.zone
-  image = var.image
-  type  = "pd-standard"
-  size  = "30"
+  name    = "disk-free-e2-micro"
+  zone    = var.zone
+  image   = var.image
+  type    = "pd-standard"
+  size    = "30"
+  project = var.PROJECT_ID
 }
 
 resource "google_compute_disk" "ssd" {
-  name  = "ssd-disk-e2-micro"
-  zone  = var.zone
-  image = "ubuntu-minimal-2004-lts"
-  type  = "pd-ssd"
-  size  = "10"
+  name    = "ssd-disk-e2-micro"
+  zone    = var.zone
+  image   = "ubuntu-minimal-2004-lts"
+  type    = "pd-ssd"
+  size    = "10"
+  project = var.PROJECT_ID
 }
 
 resource "google_compute_instance" "vm_instance" {
   name         = "free-e2-micro"
   machine_type = "e2-micro"
+  project      = var.PROJECT_ID
 
   boot_disk {
     source      = google_compute_disk.ssd.name
