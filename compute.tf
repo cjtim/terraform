@@ -6,12 +6,20 @@ resource "google_compute_disk" "default" {
   size  = "30"
 }
 
+resource "google_compute_disk" "ssd" {
+  name  = "ssd-disk-e2-micro"
+  zone  = var.zone
+  image = "ubuntu-minimal-2004-lts"
+  type  = "pd-ssd"
+  size  = "10"
+}
+
 resource "google_compute_instance" "vm_instance" {
   name         = "free-e2-micro"
   machine_type = "e2-micro"
 
   boot_disk {
-    source      = google_compute_disk.default.name
+    source      = google_compute_disk.ssd.name
     auto_delete = false
   }
 
