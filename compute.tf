@@ -22,12 +22,12 @@ resource "google_compute_instance" "vm_instance" {
   project      = var.PROJECT_ID
 
   boot_disk {
-    source      = google_compute_disk.ssd.name
+    source      = google_compute_disk.default.self_link
     auto_delete = false
   }
 
   attached_disk {
-    source = google_compute_disk.default.name
+    source = google_compute_disk.ssd.self_link
   }
 
   network_interface {
