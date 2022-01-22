@@ -7,14 +7,14 @@ resource "google_compute_disk" "default" {
   project = var.PROJECT_ID
 }
 
-resource "google_compute_disk" "ssd" {
-  name    = "ssd-disk-e2-micro"
-  zone    = var.zone
-  image   = "ubuntu-minimal-2004-focal-v20220110b"
-  type    = "pd-ssd"
-  size    = "10"
-  project = var.PROJECT_ID
-}
+// resource "google_compute_disk" "ssd" {
+//   name    = "ssd-disk-e2-micro"
+//   zone    = var.zone
+//   image   = "ubuntu-minimal-2004-focal-v20220110b"
+//   type    = "pd-ssd"
+//   size    = "10"
+//   project = var.PROJECT_ID
+// }
 
 resource "google_compute_instance" "vm_instance" {
   name         = "free-e2-micro"
@@ -26,9 +26,9 @@ resource "google_compute_instance" "vm_instance" {
     auto_delete = false
   }
 
-  attached_disk {
-    source = google_compute_disk.ssd.self_link
-  }
+  // attached_disk {
+  //   source = google_compute_disk.ssd.self_link
+  // }
 
   network_interface {
     # A default network is created for all GCP projects
